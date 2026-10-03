@@ -1,0 +1,11 @@
+export type Role='patient'|'caregiver'|'clinician'|'admin';
+export type ConsentStatus='active'|'expired'|'revoked';
+export interface Pregnancy{id:string;patient_id:string;gestational_weeks:number;due_date:string;trimester:string;notes?:string}
+export interface CaregiverAccess{id:string;patient_id:string;caregiver_id:string;can_view_care_plan:boolean;can_view_medications:boolean;can_view_tasks:boolean;can_view_appointments:boolean;can_report_concerns:boolean;status:ConsentStatus;expires_at?:string|null}
+export interface CarePlan{id:string;patient_id:string;clinician_id:string;title:string;clinical_instructions:string;caregiver_summary?:string|null;warning_signs?:string|null;status:string;ai_generated_summary:boolean;ai_approved:boolean}
+export interface Medication{id:string;patient_id:string;clinician_id:string;name:string;dosage:string;frequency:string;scheduled_time?:string|null;instructions?:string|null;active:boolean;taken_at?:string|null;taken_by?:string|null}
+export interface Task{id:string;patient_id:string;assigned_to?:string|null;created_by:string;title:string;description?:string|null;due_at?:string|null;priority:string;status:string;completed_at?:string|null}
+export interface Appointment{id:string;patient_id:string;clinician_id:string;appointment_date:string;appointment_time:string;appointment_type:string;location?:string|null;status:string;notes?:string|null}
+export interface Alert{id:string;patient_id:string;created_by:string;assigned_clinician_id?:string|null;alert_type:string;severity:string;title:string;message:string;status:string;acknowledged_by?:string|null;acknowledged_at?:string|null;created_at:string}
+export interface TimelineEvent{id:string;patient_id:string;actor_id:string;title:string;detail:string;created_at:string}
+export interface Profile{id:string;email:string;full_name:string;role:Role;license_number?:string|null;specialization?:string|null;qualifications?:string|null;hospital?:string|null;years_experience?:number|null}
